@@ -1,26 +1,41 @@
-from AnonXMusic.core.bot import Anony
-from AnonXMusic.core.dir import dirr
-from AnonXMusic.core.git import git
-from AnonXMusic.core.userbot import Userbot
-from AnonXMusic.misc import dbb, heroku
+from LoverMusic.core.bot import LoverMusic
+from LoverMusic.core.dir import dirr
+from LoverMusic.core.git import git
+from LoverMusic.core.userbot import Userbot
+from LoverMusic.misc import dbb, heroku, sudo
+from aiohttp import ClientSession
 
 from .logging import LOGGER
 
+# Directories
 dirr()
+
+# Check Git Updates
 git()
+
+# Initialize Memory DB
 dbb()
+
+# Heroku APP
 heroku()
 
-app = Anony()
-userbot = Userbot()
+# Load Sudo Users from DB
+sudo()
 
+# Bot Client
+app = LoverMusic()
+
+# Assistant Client
+userbot = Userbot()
 
 from .platforms import *
 
-Apple = AppleAPI()
-Carbon = CarbonAPI()
-SoundCloud = SoundAPI()
-Spotify = SpotifyAPI()
-Resso = RessoAPI()
-Telegram = TeleAPI()
 YouTube = YouTubeAPI()
+Carbon = CarbonAPI()
+Spotify = SpotifyAPI()
+Apple = AppleAPI()
+Resso = RessoAPI()
+SoundCloud = SoundAPI()
+Telegram = TeleAPI()
+
+aiohttpsession = ClientSession()
